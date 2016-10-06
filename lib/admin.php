@@ -23,8 +23,8 @@ genesis_unregister_layout( 'sidebar-content-sidebar' );
 add_filter( 'edit_post_link', '__return_false' );
 add_filter('widget_text', 'do_shortcode');
 
-add_action( 'widgets_init', 'ck_unregister_genesis_widgets', 20 );
-function ck_unregister_genesis_widgets() {
+add_action( 'widgets_init', 'gct_unregister_genesis_widgets', 20 );
+function gct_unregister_genesis_widgets() {
   unregister_widget( 'Genesis_eNews_Updates' );
   unregister_widget( 'Genesis_Featured_Page' );
   unregister_widget( 'Genesis_Featured_Post' );
@@ -47,8 +47,8 @@ function ck_unregister_genesis_widgets() {
   unregister_widget('WP_Nav_Menu_Widget');
 }
 
-add_action( 'genesis_admin_before_metaboxes', 'ck_remove_genesis_theme_metaboxes' );
-function ck_remove_genesis_theme_metaboxes( $hook ) {
+add_action( 'genesis_admin_before_metaboxes', 'gct_remove_genesis_theme_metaboxes' );
+function gct_remove_genesis_theme_metaboxes( $hook ) {
   remove_meta_box( 'genesis-theme-settings-version',    $hook, 'main' );
   remove_meta_box( 'genesis-theme-settings-feeds',      $hook, 'main' );
   remove_meta_box( 'genesis-theme-settings-layout',     $hook, 'main' );
@@ -89,7 +89,7 @@ function pd_disable_dashboard_widgets() {
   remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
   remove_meta_box( 'dashboard_activity', 'dashboard', 'normal' );
   remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
-  remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
+  remove_meta_box( 'dashboard_quigct_press', 'dashboard', 'side' );
   remove_meta_box( 'dashboard_recent_drafts', 'dashboard', 'side' );
   remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
   remove_meta_box( 'dashboard_secondary', 'dashboard', 'side' );
@@ -98,8 +98,8 @@ function pd_disable_dashboard_widgets() {
   remove_meta_box( 'rg_forms_dashboard', 'dashboard', 'normal' );
 }
 
-add_filter( 'admin_footer_text', 'ck_admin_footer_text' );
-function ck_admin_footer_text() {
+add_filter( 'admin_footer_text', 'gct_admin_footer_text' );
+function gct_admin_footer_text() {
   echo '<p style="float:right">Powered by <a href="http://darkspire.media/" target="_blank">Darkspire Media</a></p>';
   remove_filter( 'update_footer', 'core_update_footer' );
 }
@@ -120,8 +120,8 @@ if ( function_exists( 'acf_add_options_page' ) ):
 endif;
 
 
-add_action( 'acf/input/admin_footer', 'ck_acf_admin_footer_metabox_title', 1 );
-function ck_acf_admin_footer_metabox_title() {
+add_action( 'acf/input/admin_footer', 'gct_acf_admin_footer_metabox_title', 1 );
+function gct_acf_admin_footer_metabox_title() {
   $field_groups = acf_get_field_groups( array( 'post_id' => get_the_id() ) );
 
   foreach ( $field_groups as $field_group ) {
@@ -134,8 +134,8 @@ function ck_acf_admin_footer_metabox_title() {
   }
 }
 
-add_action( 'acf/render_field_group_settings', 'ck_render_options' );
-function ck_render_options( $field_group ) {
+add_action( 'acf/render_field_group_settings', 'gct_render_options' );
+function gct_render_options( $field_group ) {
 
   if ( $field_group['style'] == 'default' ):
 
@@ -162,8 +162,8 @@ function ck_render_options( $field_group ) {
   ));
 }
 
-add_action( 'acf/input/admin_head', 'ck_acf_admin_head' );
-function ck_acf_admin_head() {
+add_action( 'acf/input/admin_head', 'gct_acf_admin_head' );
+function gct_acf_admin_head() {
   $field_groups = acf_get_field_groups( array( 'post_id' => get_the_id() ) );
   foreach ( $field_groups as $field_group ) {
     if ( !isset( $field_group['custom_css'] ) ) continue;

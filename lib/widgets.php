@@ -1,8 +1,8 @@
 <?php
 //: lib/widgets.php ://
 
-// add_action( 'widgets_init', 'ck_register_widgets' );
-function ck_register_widgets() {
+// add_action( 'widgets_init', 'gct_register_widgets' );
+function gct_register_widgets() {
   if ( class_exists( 'ACF' ) ) {
     register_widget( 'form_widget' );
   }

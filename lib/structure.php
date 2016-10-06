@@ -6,8 +6,8 @@
 //
 
 //: Sets the page style since that silly layouts metabox is removed
-add_filter( 'genesis_pre_get_option_site_layout', 'ck_genesis_do_layout' );
-function ck_genesis_do_layout( $option ) {
+add_filter( 'genesis_pre_get_option_site_layout', 'gct_genesis_do_layout' );
+function gct_genesis_do_layout( $option ) {
   if ( is_home() || is_front_page() || is_archive() ) {
     $option = 'full-width-content';
   }
@@ -21,8 +21,8 @@ function ck_genesis_do_layout( $option ) {
 //: Header
 //
 
-add_filter( 'genesis_seo_title', 'ck_title_logo', 10, 3 );
-function ck_title_logo( $title, $inside, $wrap ) {
+add_filter( 'genesis_seo_title', 'gct_title_logo', 10, 3 );
+function gct_title_logo( $title, $inside, $wrap ) {
   $output = sprintf( '<%1$s class="site-title">%2$s</%1$s>', $wrap, $inside );
   if ( function_exists( 'get_field' ) && get_field( 'logo', 'option' ) !== false ) {
     $logo = sprintf( '<a href="%s"><img class="logo" src="%s"></a>', esc_url( get_home_url() ), get_field( 'logo', 'option' ) );
@@ -44,13 +44,13 @@ add_action( 'genesis_header', 'genesis_do_nav' );
 //: Inner
 //
 
-add_action( 'genesis_before_content_sidebar_wrap', 'ck_site_inner_wrap_open' );
-function ck_site_inner_wrap_open() {
+add_action( 'genesis_before_content_sidebar_wrap', 'gct_site_inner_wrap_open' );
+function gct_site_inner_wrap_open() {
   echo '<div class="wrap">';
 }
 
-add_action( 'genesis_after_content_sidebar_wrap', 'ck_site_inner_wrap_close' );
-function ck_site_inner_wrap_close() {
+add_action( 'genesis_after_content_sidebar_wrap', 'gct_site_inner_wrap_close' );
+function gct_site_inner_wrap_close() {
   echo '</div>';
 }
 
@@ -62,8 +62,8 @@ unregister_sidebar( 'sidebar-alt' );
 //
 
 remove_action( 'genesis_footer', 'genesis_do_footer' );
-add_action( 'genesis_footer', 'ck_footer' );
-function ck_footer() {
+add_action( 'genesis_footer', 'gct_footer' );
+function gct_footer() {
   //: Add an ACF option for copyright text
   ?>
   <p>Copyright &copy; <?php echo esc_attr( date( 'Y' ) ); ?></p>
@@ -74,8 +74,8 @@ function ck_footer() {
 //: Parts
 //
 
-add_action( 'ck_social_links', 'ck_social_links_output' );
-function ck_social_links_output() {
+add_action( 'gct_social_links', 'gct_social_links_output' );
+function gct_social_links_output() {
 
   if ( ! class_exists('acf') ) return '';
 
