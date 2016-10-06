@@ -7,3 +7,5 @@ include_once( 'lib/theme.php' );
 
 include_once( 'lib/structure.php' );
 include_once( 'lib/entries.php' );
+
+include_once( 'lib/widgets.php' );
