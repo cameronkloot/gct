@@ -6,3 +6,4 @@ include_once( 'lib/admin.php' );
 include_once( 'lib/theme.php' );
 
 include_once( 'lib/structure.php' );
+include_once( 'lib/entries.php' );
