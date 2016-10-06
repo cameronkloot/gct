@@ -122,8 +122,8 @@ function ck_enqueue_scripts() {
 
 add_filter( 'genesis_favicon_url', 'ck_favicon_url' );
 function ck_favicon_url() {
-  $url = function_exists( 'get_field' ) ? get_field( 'favicon', 'option' ) : '';
-  return esc_url( $url );
+  $url = function_exists( 'get_field' ) ? esc_url( get_field( 'favicon', 'option' ) ) : false;
+  return $url;
 }
 
 //: Add custom image sizes here
