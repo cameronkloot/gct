@@ -874,6 +874,19 @@ Content Area
 }
 
 
+/* Thumbnail
+--------------------------------------------- */
+
+.entry-thumbnail {
+	margin-bottom: 30px;
+}
+
+.entry-thumbnail img {
+	display: block;
+	width: 100%;
+	margin-bottom: 0;
+}
+
 /* Titles
 --------------------------------------------- */
 
