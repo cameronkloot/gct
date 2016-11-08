@@ -157,7 +157,7 @@ function gct_image_crop_dimensions( $default, $orig_w, $orig_h, $new_w, $new_h, 
 //: Include if Facebook sharing is required
 // add_action( 'wp_head', 'gct_print_facebook_init' );
 function gct_print_facebook_init() {
-  $facebook_id = function_exists( 'get_field' ) ? get_field( 'favicon', 'option' ) : false;
+  $facebook_id = function_exists( 'get_field' ) ? get_field( 'facebook_id', 'option' ) : false;
   if ( $facebook_id !== false ) {
     echo '<script>window.fbAsyncInit = function(){FB.init({appId: \'' . esc_attr( $facebook_id ) . '\', status: true, cookie: true, xfbml: true });};(function(d, debug){var js, id = \'facebook-jssdk\', ref = d.getElementsByTagName(\'script\')[0];if(d.getElementById(id)) {return;}js = d.createElement(\'script\'); js.id = id; js.async = true;js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";ref.parentNode.insertBefore(js, ref);}(document, /*debug*/ false));function postToShare(url){var obj = {method: \'share\',href: url};function callback(response){}FB.ui(obj, callback);}</script>' . "\n";
   }
