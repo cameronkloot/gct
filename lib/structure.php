@@ -5,8 +5,14 @@
 //: Layout
 //
 
+add_filter( 'body_class', 'ck_body_classes' );
+function ck_body_classes( $classes ) {
+  $classes[] = 'loading';
+  return $classes;
+}
+
 //: Sets the page style since that silly layouts metabox is removed
-add_filter( 'genesis_pre_get_option_site_layout', 'gct_genesis_do_layout' );
+add_filter( 'content_width', 'gct_genesis_do_layout' );
 function gct_genesis_do_layout( $option ) {
   if ( is_home() || is_front_page() || is_archive() ) {
     $option = 'full-width-content';
