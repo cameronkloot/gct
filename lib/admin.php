@@ -109,14 +109,24 @@ function gct_admin_footer_text() {
 //
 
 if ( function_exists( 'acf_add_options_page' ) ):
+$parent = acf_add_options_page( array(
+	'page_title'    => 'Theme',
+	'capability'    => 'manage_options',
+	'position'      => '59.1',
+	'redirect' 		=> true
+) );
 
-  acf_add_options_page( array(
-    'page_title'    => 'Theme Settings',
-    'menu_slug'     => 'theme_settings',
-    'capability'    => 'manage_options',
-    'position'      => '59.1',
-  ) );
+acf_add_options_sub_page(array(
+	'page_title' 	=> 'Options',
+	'menu_title' 	=> 'Options',
+	'parent_slug' 	=> $parent['menu_slug'],
+) );
 
+acf_add_options_sub_page(array(
+	'page_title' 	=> 'Scripts',
+	'menu_title' 	=> 'Scripts',
+	'parent_slug' 	=> $parent['menu_slug'],
+) );
 endif;
 
 
@@ -171,5 +181,25 @@ function gct_acf_admin_head() {
   }
   echo '<style type="text/css">.hide-label .acf-label{display:none;}</style>';
 }
+
+// add_action( 'admin_head', 'ck_wp_admin_head' );
+function ck_wp_admin_head() {
+    ?>
+    <style type="text/css">
+    .acf-settings-wrap .acf-postbox .handlediv,
+    .acf-settings-wrap .acf-postbox .handlediv,
+    .acf-settings-wrap .acf-postbox .hndle,
+    .acf-settings-wrap .acf-postbox .hndle {
+        display: none;
+    }
+
+    .acf-postbox.default .acf-tab-group {
+        background: #f1f1f1;
+        /*#f5f5f5*/
+    }
+    </style>
+    <?php
+}
+
 
 //: END lib/admin.php ://

@@ -154,6 +154,53 @@ function gct_image_crop_dimensions( $default, $orig_w, $orig_h, $new_w, $new_h, 
   return array( 0, 0, (int) $s_x, (int) $s_y, (int) $new_w, (int) $new_h, (int) $crop_w, (int) $crop_h );
 }
 
+//: Scripts ://
+
+add_action( 'wp_head', 'ck_header_scripts', 999 );
+function ck_header_scripts() {
+  if ( $code = get_field( 'header_scripts', 'option' ) ) {
+    echo "\n";
+    echo $code;
+    echo "\n";
+  }
+
+  if ( $code = get_field( 'header_scripts'  ) ) {
+    echo "\n";
+    echo $code;
+    echo "\n";
+  }
+}
+
+add_action( 'genesis_after', 'ck_before_scripts', 1 );
+function ck_before_scripts() {
+  if ( $code = get_field( 'body_scripts', 'option' ) ) {
+    echo "\n";
+    echo $code;
+    echo "\n";
+  }
+
+  if ( $code = get_field( 'body_scripts' ) ) {
+    echo "\n";
+    echo $code;
+    echo "\n";
+  }
+}
+
+add_action( 'wp_footer', 'ck_footer_scripts', 999 );
+function ck_footer_scripts() {
+  if ( $code = get_field( 'footer_scripts', 'option' ) ) {
+    echo "\n";
+    echo $code;
+    echo "\n";
+  }
+
+  if ( $code = get_field( 'footer_scripts' ) ) {
+    echo "\n";
+    echo $code;
+    echo "\n";
+  }
+}
+
 //: Include if Facebook sharing is required
 // add_action( 'wp_head', 'gct_print_facebook_init' );
 function gct_print_facebook_init() {
