@@ -12,15 +12,14 @@ function ck_body_classes( $classes ) {
 }
 
 //: Sets the page style since that silly layouts metabox is removed
-add_filter( 'content_width', 'gct_genesis_do_layout' );
-function gct_genesis_do_layout( $option ) {
+add_filter( 'genesis_site_layout', 'gct_site_layout' );
+function gct_site_layout() {
   if ( is_home() || is_front_page() || is_archive() ) {
-    $option = 'full-width-content';
+    return 'full-width-content';
   }
   else {
-    $option = 'content-sidebar';
+    return 'content-sidebar';
   }
-  return $option;
 }
 
 //
