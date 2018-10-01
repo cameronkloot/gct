@@ -100,7 +100,6 @@ function pd_disable_dashboard_widgets() {
 
 add_filter( 'admin_footer_text', 'gct_admin_footer_text' );
 function gct_admin_footer_text() {
-  echo '<p style="float:right">Powered by <a href="http://darkspire.media/" target="_blank">Darkspire Media</a></p>';
   remove_filter( 'update_footer', 'core_update_footer' );
 }
 
