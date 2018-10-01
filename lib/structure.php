@@ -5,8 +5,8 @@
 //: Layout
 //
 
-add_filter( 'body_class', 'ck_body_classes' );
-function ck_body_classes( $classes ) {
+add_filter( 'body_class', 'gct_body_classes' );
+function gct_body_classes( $classes ) {
   return $classes;
 }
 

@@ -173,8 +173,8 @@ function gct_image_crop_dimensions( $default, $orig_w, $orig_h, $new_w, $new_h, 
 
 //: Scripts ://
 
-add_action( 'wp_head', 'ck_header_scripts', 999 );
-function ck_header_scripts() {
+add_action( 'wp_head', 'gct_header_scripts', 999 );
+function gct_header_scripts() {
   if ( $code = get_field( 'header_scripts', 'option' ) ) {
     echo "\n";
     echo $code;
@@ -188,8 +188,8 @@ function ck_header_scripts() {
   }
 }
 
-add_action( 'genesis_after', 'ck_before_scripts', 1 );
-function ck_before_scripts() {
+add_action( 'genesis_after', 'gct_before_scripts', 1 );
+function gct_before_scripts() {
   if ( $code = get_field( 'body_scripts', 'option' ) ) {
     echo "\n";
     echo $code;
@@ -203,8 +203,8 @@ function ck_before_scripts() {
   }
 }
 
-add_action( 'wp_footer', 'ck_footer_scripts', 999 );
-function ck_footer_scripts() {
+add_action( 'wp_footer', 'gct_footer_scripts', 999 );
+function gct_footer_scripts() {
   if ( $code = get_field( 'footer_scripts', 'option' ) ) {
     echo "\n";
     echo $code;

@@ -181,8 +181,8 @@ function gct_acf_admin_head() {
   echo '<style type="text/css">.hide-label .acf-label{display:none;}</style>';
 }
 
-// add_action( 'admin_head', 'ck_wp_admin_head' );
-function ck_wp_admin_head() {
+// add_action( 'admin_head', 'gct_wp_admin_head' );
+function gct_wp_admin_head() {
     ?>
     <style type="text/css">
     .acf-settings-wrap .acf-postbox .handlediv,
