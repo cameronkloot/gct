@@ -74,12 +74,29 @@ function gct_gform_field_custom_type_class( $classes, $field, $form ) {
   return $classes;
 }
 
-add_filter( 'gform_notification', 'change_notification_email', 10, 3 );
-function change_notification_email( $notification, $form, $entry ) {
+// add_filter( 'gform_notification', 'gct_change_notification_email', 10, 3 );
+function gct_change_notification_email( $notification, $form, $entry ) {
   if ( $notification['name'] == 'Admin Notification' ) {
     return null;
   }
   return $notification;
+}
+
+add_filter( 'gform_cdata_open', 'gct_wrap_gform_cdata_open' );
+function gct_wrap_gform_cdata_open( $content = '' ) {
+	$content = 'document.addEventListener( "DOMContentLoaded", function() { ';
+	return $content;
+}
+
+add_filter( 'gform_cdata_close', 'gct_wrap_gform_cdata_close' );
+function gct_wrap_gform_cdata_close( $content = '' ) {
+	$content = ' }, false );';
+	return $content;
+}
+
+add_filter( 'gform_ajax_spinner_url', 'gct_gf_spinner_replace', 10, 2 );
+function gct_gf_spinner_replace( $image_src, $form ) {
+	return  'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 }
 
 //
