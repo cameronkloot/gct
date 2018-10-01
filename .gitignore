@@ -2,3 +2,5 @@
 
 .plugins
 .uploads
+
+/node_modules

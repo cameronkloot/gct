@@ -1,0 +1,13 @@
+{
+  "name": "bpi",
+  "version": "0.0.1",
+  "scripts": {
+    "sync": "browser-sync start --config bs-config.js",
+    "css": "postcss style.css -u autoprefixer -o style.css --no-map"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.2",
+    "browser-sync": "^2.24.7",
+    "postcss-cli": "^4.1.0"
+  }
+}

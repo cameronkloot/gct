@@ -165,6 +165,14 @@ function gct_enqueue_scripts() {
   wp_enqueue_script( 'functions', esc_url( get_stylesheet_directory_uri() ) . '/assets/js/jquery.functions.js', array( 'jquery' ), false, true );
 }
 
+
+if ( BROWSER_SYNC === true ) {
+  add_action( 'wp_enqueue_scripts', 'bpi_enqueue_dev_scripts', 99 );
+  function bpi_enqueue_dev_scripts() {
+    wp_enqueue_script( 'browsersync', 'http://localhost:3000/browser-sync/browser-sync-client.js?v=2.24.4', null, false, true );
+  }
+}
+
 // Add custom image sizes here
 add_action( 'after_setup_theme', 'gct_setup_image_sizes' );
 function gct_setup_image_sizes() {
