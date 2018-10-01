@@ -7,7 +7,6 @@
 
 add_filter( 'body_class', 'ck_body_classes' );
 function ck_body_classes( $classes ) {
-  $classes[] = 'loading';
   return $classes;
 }
 
