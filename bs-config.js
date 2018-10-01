@@ -4,7 +4,9 @@ module.exports = {
         'style.css',
         'lib/*.php',
         'templates/*.php',
-        '*.php'
+        '*.php',
+        'assets/js/*.js',
+        'assets/css/*.css'
     ],
     "watchEvents": [
         "change"
