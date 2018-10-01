@@ -1,5 +1,5 @@
 <?php
-//: lib/common.php ://
+// lib/common.php //
 
 function gct_encode_twitter( $text ) {
   return htmlspecialchars(urlencode(html_entity_decode($text, ENT_COMPAT, 'UTF-8')), ENT_COMPAT, 'UTF-8');
@@ -38,4 +38,4 @@ function gct_image_url( $image_id, $size = 'hero' ) {
   return $image_array !== false ? $image_array[0] : '';
 }
 
-//: END lib/common.php ://
+// END lib/common.php //

@@ -1,8 +1,8 @@
 <?php
-//: lib/admin.php ://
+// lib/admin.php //
 
 //
-//: Genesis
+// Genesis
 //
 
 remove_action( 'admin_menu', 'genesis_add_inpost_seo_box' );
@@ -17,7 +17,7 @@ genesis_unregister_layout( 'sidebar-sidebar-content' );
 genesis_unregister_layout( 'sidebar-content-sidebar' );
 
 //
-//: Wordpress
+// Wordpress
 //
 
 add_filter( 'edit_post_link', '__return_false' );
@@ -104,7 +104,7 @@ function gct_admin_footer_text() {
 }
 
 //
-//: ACF
+// ACF
 //
 
 if ( function_exists( 'acf_add_options_page' ) ):
@@ -201,4 +201,4 @@ function gct_wp_admin_head() {
 }
 
 
-//: END lib/admin.php ://
+// END lib/admin.php //

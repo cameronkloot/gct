@@ -1,14 +1,14 @@
 <?php
-//: lib/entries.php ://
+// lib/entries.php //
 
 add_action( 'genesis_before', 'gct_before_entries' );
 function gct_before_entries() {
 
-  //: Info and meta will often be removed straight up. Replace with filter if needed
+  // Info and meta will often be removed straight up. Replace with filter if needed
   remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
   remove_action( 'genesis_entry_footer', 'genesis_post_meta' );
 
-  //: Filter priority of '0' places the output before the <header> tag
+  // Filter priority of '0' places the output before the <header> tag
   add_action( 'genesis_entry_header', 'gct_entry_thumbnail_ouput', 0 );
 
 }
@@ -19,10 +19,10 @@ function gct_entry_thumbnail_ouput() {
     $size = 'full'; // eg: $size = is_archive() ? 'feature' : 'full';
     echo '<div class="entry-thumbnail">';
 
-      //: TODO Add filter for linked or not
+      // TODO Add filter for linked or not
       echo is_archive() || is_front_page() ? sprintf( '<a href="%s">', get_permalink() ) : '';
 
-      the_post_thumbnail( $size ); //: TODO Escape output
+      the_post_thumbnail( $size ); // TODO Escape output
 
       echo is_archive() || is_front_page() ? '</a>' : '';
 
@@ -31,4 +31,4 @@ function gct_entry_thumbnail_ouput() {
 }
 
 
-//: END lib/entries.php ://
+// END lib/entries.php //

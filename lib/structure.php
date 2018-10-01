@@ -1,8 +1,8 @@
 <?php
-//: lib/structure.php ://
+// lib/structure.php //
 
 //
-//: Layout
+// Layout
 //
 
 add_filter( 'body_class', 'gct_body_classes' );
@@ -10,7 +10,7 @@ function gct_body_classes( $classes ) {
   return $classes;
 }
 
-//: Sets the page style since that silly layouts metabox is removed
+// Sets the page style since that silly layouts metabox is removed
 add_filter( 'genesis_site_layout', 'gct_site_layout' );
 function gct_site_layout() {
   if ( is_home() || is_front_page() || is_archive() ) {
@@ -22,7 +22,7 @@ function gct_site_layout() {
 }
 
 //
-//: Header
+// Header
 //
 
 add_filter( 'genesis_seo_title', 'gct_title_logo', 10, 3 );
@@ -35,17 +35,17 @@ function gct_title_logo( $title, $inside, $wrap ) {
   return $output;
 }
 
-//: Removes secondary menu
+// Removes secondary menu
 add_theme_support( 'genesis-menus', array(
   'primary' => 'Primary Navigation Menu'
 ) );
 
-//: Moves Primary Nav to the Site Header
+// Moves Primary Nav to the Site Header
 remove_action( 'genesis_after_header', 'genesis_do_nav' );
 add_action( 'genesis_header', 'genesis_do_nav' );
 
 //
-//: Inner
+// Inner
 //
 
 add_action( 'genesis_before_content_sidebar_wrap', 'gct_site_inner_wrap_open' );
@@ -62,20 +62,20 @@ unregister_sidebar( 'header-right' );
 unregister_sidebar( 'sidebar-alt' );
 
 //
-//: Footer
+// Footer
 //
 
 remove_action( 'genesis_footer', 'genesis_do_footer' );
 add_action( 'genesis_footer', 'gct_footer' );
 function gct_footer() {
-  //: Add an ACF option for copyright text
+  // Add an ACF option for copyright text
   ?>
   <p>Copyright &copy; <?php echo esc_attr( date( 'Y' ) ); ?></p>
   <?php
 }
 
 //
-//: Parts
+// Parts
 //
 
 add_action( 'gct_social_links', 'gct_social_links_output' );
@@ -91,7 +91,7 @@ function gct_social_links_output() {
         <li><a href="<?php echo esc_url( get_sub_field( 'link' ) ); ?>" target="_blank">
           <?php
           $icon = get_sub_field( 'icon' );
-          if ( strip_tags( $icon ) == $icon ) { //: class name ACF
+          if ( strip_tags( $icon ) == $icon ) { // class name ACF
             echo sprintf( '<i class="fa fa-fw %s"></i>', $icon );
           }
           else {
@@ -106,4 +106,4 @@ function gct_social_links_output() {
   endif;
 }
 
-//: END lib/structure.php ://
+// END lib/structure.php //

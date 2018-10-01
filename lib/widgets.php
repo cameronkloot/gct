@@ -1,5 +1,5 @@
 <?php
-//: lib/widgets.php ://
+// lib/widgets.php //
 
 // add_action( 'widgets_init', 'gct_register_widgets' );
 function gct_register_widgets() {
@@ -45,4 +45,4 @@ class form_widget extends WP_Widget {
   }
 }
 
-//: END lib/widgets.php ://
+// END lib/widgets.php //

@@ -1,17 +1,17 @@
 <?php
-//: lib/theme.php ://
+// lib/theme.php //
 
 //
-//: Genesis
+// Genesis
 //
 
-//: Tells Genesis to use HTML5 markup
+// Tells Genesis to use HTML5 markup
 add_theme_support( 'html5' );
 
-//: Fucking comments
+// Fucking comments
 remove_action( 'genesis_comments', 'genesis_do_comments' );
 
-//: Prevents users from zooming like dicks, adjust or remove if needed
+// Prevents users from zooming like dicks, adjust or remove if needed
 add_action( 'genesis_meta', 'gct_viewport_meta_tag_output' );
 function gct_viewport_meta_tag_output() {
   ?>
@@ -19,7 +19,7 @@ function gct_viewport_meta_tag_output() {
   <?php
 }
 
-//: Remove default Genesis templates
+// Remove default Genesis templates
 add_filter( 'theme_page_templates', 'gct_remove_genesis_page_templates' );
 function gct_remove_genesis_page_templates( $page_templates ) {
   unset( $page_templates['page_archive.php'] );
@@ -27,7 +27,7 @@ function gct_remove_genesis_page_templates( $page_templates ) {
   return $page_templates;
 }
 
-//: Adjust settings without need of the admin menu page
+// Adjust settings without need of the admin menu page
 add_filter('genesis_options', 'gct_set_genesis_defaults', 10, 2);
 function gct_set_genesis_defaults( $options, $setting ) {
   if ( $setting == 'genesis-settings' ) {
@@ -39,7 +39,7 @@ function gct_set_genesis_defaults( $options, $setting ) {
 }
 
 //
-//: Gravity Forms
+// Gravity Forms
 //
 
 add_filter( 'gform_init_scripts_footer', '__return_true' );
@@ -54,18 +54,18 @@ function gct_disable_gform_tabindex( $tab_index, $form = false ) {
 add_filter( 'gform_field_css_class', 'gct_gform_field_custom_type_class', 10, 3 );
 function gct_gform_field_custom_type_class( $classes, $field, $form ) {
 
-  //: Only add classes for front end forms
+  // Only add classes for front end forms
   if ( ! is_admin() ) {
 
-    //: Add field type as a css selector
+    // Add field type as a css selector
     $classes .= sprintf( ' gfield_%s', esc_attr( $field->type ) );
 
-    //: Single text fields with input match '99999' are Zip fields
+    // Single text fields with input match '99999' are Zip fields
     if ( $field['inputMask'] && $field['inputMaskValue'] == '99999' ) {
       $classes .= ' gfield_zip';
     }
 
-    //: Add 'small', 'medium', or 'large' if set as a property
+    // Add 'small', 'medium', or 'large' if set as a property
     if ( isset( $field['size'] ) ) {
       $classes .= sprintf( ' %s', esc_attr( $field['size'] ) );
     }
@@ -100,13 +100,13 @@ function gct_gf_spinner_replace( $image_src, $form ) {
 }
 
 //
-//: Other
+// Other
 //
 
-add_filter( 'wpseo_metabox_prio', '__return_null'); //: Puts Yoast metabox as low as possible
+add_filter( 'wpseo_metabox_prio', '__return_null'); // Puts Yoast metabox as low as possible
 
 //
-//: Wordpress
+// Wordpress
 //
 
 add_filter( 'excerpt_length', 'gct_excerpt_length' );
@@ -121,10 +121,10 @@ function gct_get_read_more_link() {
 }
 
 //
-//: GCT
+// GCT
 //
 
-//: Enqueue fonts instead of using @import
+// Enqueue fonts instead of using @import
 add_action( 'wp_enqueue_scripts', 'gct_enqueue_styles');
 function gct_enqueue_styles() {
   wp_enqueue_style( 'roboto', '//fonts.googleapis.com/css?family=Roboto:300,300italic,500,700,700italic' );
@@ -143,18 +143,18 @@ function gct_favicon_url() {
   return $url;
 }
 
-//: Add custom image sizes here
+// Add custom image sizes here
 add_action( 'after_setup_theme', 'gct_setup_image_sizes' );
 function gct_setup_image_sizes() {
   // add_image_size( 'featured-square', 600, 600, true );
 }
 
-//: Not mine originally. Useful for upsizing shit images to fit the theme correctly
-//: Does not replace kicking whoever is using bad images
+// Not mine originally. Useful for upsizing shit images to fit the theme correctly
+// Does not replace kicking whoever is using bad images
 add_filter( 'image_resize_dimensions', 'gct_image_crop_dimensions', 10, 6 );
 function gct_image_crop_dimensions( $default, $orig_w, $orig_h, $new_w, $new_h, $crop ){
   if ( !$crop ) return null;
-  //: 150, 150 so anything above default WP 'thumbnail' will be upsized
+  // 150, 150 so anything above default WP 'thumbnail' will be upsized
   if ( $orig_w <= 150 || $orig_h <= 150 ) return;
 
   $aspect_ratio = $orig_w / $orig_h;
@@ -171,7 +171,7 @@ function gct_image_crop_dimensions( $default, $orig_w, $orig_h, $new_w, $new_h, 
   return array( 0, 0, (int) $s_x, (int) $s_y, (int) $new_w, (int) $new_h, (int) $crop_w, (int) $crop_h );
 }
 
-//: Scripts ://
+// Scripts ://
 
 add_action( 'wp_head', 'gct_header_scripts', 999 );
 function gct_header_scripts() {
@@ -218,7 +218,7 @@ function gct_footer_scripts() {
   }
 }
 
-//: Include if Facebook sharing is required
+// Include if Facebook sharing is required
 // add_action( 'wp_head', 'gct_print_facebook_init' );
 function gct_print_facebook_init() {
   $facebook_id = function_exists( 'get_field' ) ? get_field( 'facebook_id', 'option' ) : false;
@@ -227,4 +227,4 @@ function gct_print_facebook_init() {
   }
 }
 
-//: END lib/theme.php ://
+// END lib/theme.php //

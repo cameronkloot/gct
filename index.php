@@ -1,5 +1,5 @@
 <?php
-//: index.php ://
+// index.php //
 
 genesis();
-//: END index.php ://
+// END index.php //
