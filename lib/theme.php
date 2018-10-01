@@ -1,9 +1,34 @@
 <?php
 // lib/theme.php //
 
-//
+// Soil
+// add_theme_support('soil-clean-up');
+// // add_theme_support('soil-disable-asset-versioning');
+// add_theme_support('soil-disable-trackbacks');
+// add_theme_support('soil-jquery-cdn');
+// add_theme_support('soil-js-to-footer');
+// add_theme_support('soil-nav-walker');
+// add_theme_support('soil-nice-search');
+// add_theme_support('soil-relative-urls');
+
+
+// ACF
+
+// Save ACF options to json
+add_filter( 'acf/settings/save_json', 'bpi_save_acf_json' );
+function bpi_save_acf_json( $path ) {
+	$path = get_stylesheet_directory() . '/acf_json';
+	return $path;
+}
+
+add_filter( 'acf/settings/load_json', 'bpi_acf_json_load_point' );
+function bpi_acf_json_load_point( $paths ) {
+	unset($paths[0]);
+	$paths[] = get_stylesheet_directory() . '/acf_json';
+	return $paths;
+}
+
 // Genesis
-//
 
 // Tells Genesis to use HTML5 markup
 add_theme_support( 'html5' );
@@ -18,6 +43,13 @@ function gct_viewport_meta_tag_output() {
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <?php
 }
+
+add_filter( 'genesis_search_text', function() {
+  return 'Search...';
+} );
+
+remove_action( 'admin_init', 'genesis_add_taxonomy_seo_options' );
+remove_action( 'admin_init', 'genesis_add_taxonomy_layout_options' );
 
 // Remove default Genesis templates
 add_filter( 'theme_page_templates', 'gct_remove_genesis_page_templates' );
@@ -38,9 +70,8 @@ function gct_set_genesis_defaults( $options, $setting ) {
   return $options;
 }
 
-//
+
 // Gravity Forms
-//
 
 add_filter( 'gform_init_scripts_footer', '__return_true' );
 add_filter( 'gform_enable_field_label_visibility_settings', '__return_true' );
@@ -99,15 +130,13 @@ function gct_gf_spinner_replace( $image_src, $form ) {
 	return  'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 }
 
-//
+
 // Other
-//
 
 add_filter( 'wpseo_metabox_prio', '__return_null'); // Puts Yoast metabox as low as possible
 
-//
+
 // Wordpress
-//
 
 add_filter( 'excerpt_length', 'gct_excerpt_length' );
 function gct_excerpt_length( $length ) {
@@ -120,9 +149,8 @@ function gct_get_read_more_link() {
   return '...';
 }
 
-//
+
 // GCT
-//
 
 // Enqueue fonts instead of using @import
 add_action( 'wp_enqueue_scripts', 'gct_enqueue_styles');
@@ -135,12 +163,6 @@ function gct_enqueue_styles() {
 function gct_enqueue_scripts() {
   wp_enqueue_script( 'slicknav', esc_url( get_stylesheet_directory_uri() ) . '/assets/js/jquery.slicknav.min.js', array( 'jquery' ), false, true );
   wp_enqueue_script( 'functions', esc_url( get_stylesheet_directory_uri() ) . '/assets/js/jquery.functions.js', array( 'jquery' ), false, true );
-}
-
-add_filter( 'genesis_favicon_url', 'gct_favicon_url' );
-function gct_favicon_url() {
-  $url = function_exists( 'get_field' ) ? esc_url( get_field( 'favicon', 'option' ) ) : false;
-  return $url;
 }
 
 // Add custom image sizes here
@@ -171,7 +193,8 @@ function gct_image_crop_dimensions( $default, $orig_w, $orig_h, $new_w, $new_h, 
   return array( 0, 0, (int) $s_x, (int) $s_y, (int) $new_w, (int) $new_h, (int) $crop_w, (int) $crop_h );
 }
 
-// Scripts ://
+
+// Scripts
 
 add_action( 'wp_head', 'gct_header_scripts', 999 );
 function gct_header_scripts() {

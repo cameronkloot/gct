@@ -1,9 +1,8 @@
 <?php
 // lib/admin.php //
 
-//
+
 // Genesis
-//
 
 remove_action( 'admin_menu', 'genesis_add_inpost_seo_box' );
 remove_theme_support( 'genesis-seo-settings-menu' );
@@ -16,9 +15,8 @@ genesis_unregister_layout( 'content-sidebar-sidebar' );
 genesis_unregister_layout( 'sidebar-sidebar-content' );
 genesis_unregister_layout( 'sidebar-content-sidebar' );
 
-//
+
 // Wordpress
-//
 
 add_filter( 'edit_post_link', '__return_false' );
 add_filter('widget_text', 'do_shortcode');
@@ -67,14 +65,14 @@ function gct_remove_genesis_theme_metaboxes( $hook ) {
   remove_meta_box( 'genesis-seo-settings-archives', $hook, 'main' );
 }
 
-add_action( 'admin_bar_menu', 'pd_admin_bar_remove_menu_items', 99 );
-function pd_admin_bar_remove_menu_items( $wp_admin_bar ) {
+add_action( 'admin_bar_menu', 'gct_admin_bar_remove_menu_items', 99 );
+function gct_admin_bar_remove_menu_items( $wp_admin_bar ) {
   $wp_admin_bar->remove_node( 'wp-logo' );
   $wp_admin_bar->remove_node( 'comments' );
 }
 
-add_action( 'admin_menu', 'pd_remove_menus' );
-function pd_remove_menus(){
+add_action( 'admin_menu', 'gct_remove_menus' );
+function gct_remove_menus(){
   global $menu;
   // remove_menu_page( 'edit-comments.php' );
   // remove_menu_page( 'tools.php' );
@@ -84,8 +82,8 @@ function pd_remove_menus(){
   remove_meta_box('commentsdiv', 'post', 'normal');
 }
 
-add_action( 'wp_dashboard_setup', 'pd_disable_dashboard_widgets' );
-function pd_disable_dashboard_widgets() {
+add_action( 'wp_dashboard_setup', 'gct_disable_dashboard_widgets' );
+function gct_disable_dashboard_widgets() {
   remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
   remove_meta_box( 'dashboard_activity', 'dashboard', 'normal' );
   remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
@@ -103,9 +101,8 @@ function gct_admin_footer_text() {
   remove_filter( 'update_footer', 'core_update_footer' );
 }
 
-//
+
 // ACF
-//
 
 if ( function_exists( 'acf_add_options_page' ) ):
 $parent = acf_add_options_page( array(
