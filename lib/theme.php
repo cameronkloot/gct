@@ -166,7 +166,7 @@ function gct_enqueue_scripts() {
 }
 
 
-if ( BROWSER_SYNC === true ) {
+if ( WP_DEBUG === true ) {
   add_action( 'wp_enqueue_scripts', 'bpi_enqueue_dev_scripts', 99 );
   function bpi_enqueue_dev_scripts() {
     wp_enqueue_script( 'browsersync', 'http://localhost:3000/browser-sync/browser-sync-client.js?v=2.24.4', null, false, true );
