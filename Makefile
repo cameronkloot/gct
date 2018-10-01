@@ -6,3 +6,6 @@ stop:
 
 down:
 	docker-compose down
+
+drma:
+	docker-compose down --volumes --rmi all
